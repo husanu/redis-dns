@@ -4,6 +4,18 @@
   "version": "0.0.1",
   "description": "",
   "author": "Jonas Colmsjö <jonas@gizur.com>",
+  "description": "Simple DNS server configured using redis. Based on iriscouche's dnsd: https://github.com/iriscouch/dnsd",
+  "homepage": "https://github.com/colmsjo/redis-dns",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colmsjo/redis-dns.git"
+  },
+  "bugs": {
+    "url": "https://github.com/colmsjo/redis-dns/issues"
+  },
+  "author": "Jonas Colmsjö <jonas@gizur.com>",
+  "main": "server.js",
+  "bin": "./server.js",
   "dependencies": {
     "dnsd": "0.9.0",
     "redis": "0.8.4",
