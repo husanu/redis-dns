@@ -74,11 +74,62 @@ function handler(req, res) {
               'ttl':ttl};
 
             res.answer.push(answer);
+
+            redis_client.quit();
+            console.log('%s:%s/%s question:%j answer:%j', req.connection.remoteAddress, req.connection.remotePort, req.connection.type, question, answer);
+            res.end();
+
+          } else {
+
+            /* No match in Redis, try to lookup using the google server */
+
+            var dns  = require('native-dns'),
+                util = require('util');
+
+            var nativeQuestion = dns.Question({
+              name: question.name,
+              type: 'A'
+            });
+
+            var start = Date.now();
+
+            var nativeReq = dns.Request({
+              question: nativeQuestion,
+              server: { address: '8.8.8.8', port: 53, type: 'udp' },
+              timeout: 1000
+            });
+
+            nativeReq.on('timeout', function () {
+              console.log('native-dns: Timeout in making request');
+            });
+
+            nativeReq.on('message', function (err, answer) {
+              answer.answer.forEach(function (a) {
+
+                answer = {
+                  name:hostname,
+                  type:'A',
+                  data:a.address,
+                  'ttl':ttl};
+
+                res.answer.push(answer);
+              });
+            });
+
+            nativeReq.on('end', function () {
+              var delta = (Date.now()) - start;
+              console.log('Finished processing request: ' + delta.toString() + 'ms');
+
+              redis_client.quit();
+              console.log('%s:%s/%s question:%j answer:%j', req.connection.remoteAddress, req.connection.remotePort, req.connection.type, question, res.answer);
+              res.end();
+
+            });
+
+            nativeReq.send();
+
           }
         }
-        redis_client.quit();
-        console.log('%s:%s/%s question:%j answer:%j', req.connection.remoteAddress, req.connection.remotePort, req.connection.type, question, answer);
-        res.end();
       }.bind(this));
     }.bind(this));
 
