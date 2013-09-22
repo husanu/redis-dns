@@ -1,3 +1,10 @@
+Introduction
+------------
+
+A NodeJS DNS server that is configured using Redis. Names not found in redis are looked up in Google's 
+DNS server (8.8.8.8).
+
+
 
 Installation
 ------------
