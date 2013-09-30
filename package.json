@@ -1,7 +1,7 @@
 {
   "name": "redis-dns",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "",
   "author": "Jonas Colmsjö <jonas@gizur.com>",
   "description": "Simple DNS server configured using redis. Based on iriscouche's dnsd: https://github.com/iriscouch/dnsd",
@@ -20,7 +20,7 @@
     "dnsd": "0.9.0",
     "redis": "0.8.4",
     "helpersjs" : "0.1.5",
-    "nconf" : "0.6.7",
+    "nconf" : "*",
     "native-dns" : "*"
   },
   "devDependencies": {
