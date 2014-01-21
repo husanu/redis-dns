@@ -18,7 +18,7 @@ Make sure to setup DNS correctly on the hosts where you want to use this DNS ser
 
 Install: `npm install --production`
 
-Copy `redis-dns.json.template` to `redis-dns.json` and update with your settings. 
+Copy `redis-dns-config.json.template` to `redis-dns-config.json` and update with your settings. 
 Start the server: `node server.js`
 
 
