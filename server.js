@@ -14,7 +14,7 @@
 //------------------------------
 
 var dnsd       = require('dnsd'),
-    helpers    = require('helpersjs').create(),
+#   helpers    = require('helpersjs').create(),
     nconf      = require('nconf');
 
 
@@ -28,7 +28,7 @@ var dnsd       = require('dnsd'),
   this.redisPort    = nconf.get('redis_port');
 
   // set logging level
-  switch(nconf.get('logging')) {
+/*  switch(nconf.get('logging')) {
 
     case 'debug':
       helpers.logging_threshold  = helpers.logging.debug;
@@ -41,7 +41,7 @@ var dnsd       = require('dnsd'),
     default:
       console.log('error: incorrect logging level in config.json - should be warning or debug!');
   }
-
+*/
 
 
 function handler(req, res) {
@@ -64,7 +64,8 @@ function handler(req, res) {
       // first set the IP for the domain in redis
       redis_client.get("redis-dns:"+hostname, function(redis_err, redis_res) {
         if(redis_err) {
-          helpers.logErr('Redis error:'+redis_err);
+#          helpers.logErr('Redis error:'+redis_err);
+          console.log('Redis error:'+redis_err);
         } else {
           if(redis_res !== null && redis_res.length > 0) {
             answer = {
