@@ -14,7 +14,6 @@
 //------------------------------
 
 var dnsd       = require('dnsd'),
-#   helpers    = require('helpersjs').create(),
     nconf      = require('nconf');
 
 
@@ -64,7 +63,6 @@ function handler(req, res) {
       // first set the IP for the domain in redis
       redis_client.get("redis-dns:"+hostname, function(redis_err, redis_res) {
         if(redis_err) {
-#          helpers.logErr('Redis error:'+redis_err);
           console.log('Redis error:'+redis_err);
         } else {
           if(redis_res !== null && redis_res.length > 0) {
