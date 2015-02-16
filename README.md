@@ -44,3 +44,13 @@ Should give 10.0.0.1: `dig @localhost -p 5353 dbserver.redis-dns.local A`
 Should give empty answer: `dig @localhost -p 5353 dbserverrrr.redis-dns.local A`
 
 Should give empty answer: `dig @localhost -p 5353 dbserver.redis-dns.local MX`
+
+
+Docker setup
+-----------
+
+Build an image: `docker build --rm -t redisdns .`
+
+Start a container:
+
+    docker run -d -p 5353 --name redisdns redisdns
