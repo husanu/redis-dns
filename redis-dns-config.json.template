@@ -1,8 +1,0 @@
-{
-  "dns_interface" : "127.0.0.1",
-  "dns_port" : 5353,
-  "dns_zone" : "redis-dns.local",
-  "redis_host" : "localhost",
-  "redis_port" : 6379,
-  "logging" : "warning"
-}
