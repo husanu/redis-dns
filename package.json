@@ -13,8 +13,8 @@
         "url": "https://github.com/colmsjo/redis-dns/issues"
     },
     "author": "Jonas Colmsjö <jonas@gizur.com>",
-    "main": "server.js",
-    "bin": "./server.js",
+    "main": "index.js",
+    "bin": "./index.js",
     "scripts": {
         "test": "xo && exit 0",
         "dev": "export NODE_ENV='dev' && clear && yarn start",
