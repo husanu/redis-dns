@@ -1,14 +1,22 @@
 #!/usr/bin/env node
 
+import fs from 'fs';
 import path from 'path';
 import util from 'util'
 import dnsd from 'dnsd';
 import nconf from 'nconf';
 import redis from 'redis';
-import dns from 'native-dns';;
+import dns from 'native-dns';
+
+const configPath = path.join(__dirname, 'config.json');
+
+if (!fs.existsSync(configPath)) {
+    console.error(`config.json doesn't exist.`);
+    process.exit();
+}
 
 nconf.use('file', {
-    file: path.join(__dirname, 'config.json')
+    file: configPath
 });
 nconf.load();
 
