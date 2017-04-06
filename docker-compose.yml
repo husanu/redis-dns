@@ -1,0 +1,14 @@
+version: '2'
+services:
+  dns:
+    build: .
+    ports:
+      - "53:53"
+    depends_on:
+      - "redis"
+  redis:
+    image: "redis"
+    volumes:
+      - "./data:/data"
+    expose:
+      - "6379"
