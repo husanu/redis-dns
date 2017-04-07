@@ -3,7 +3,9 @@ services:
   dns:
     build: .
     ports:
-      - "53:53"
+      - "5353:5353"
+    volumes:
+      - "./config.json:/app/config.json"
     depends_on:
       - "redis"
   redis:
