@@ -1,0 +1,16 @@
+version: '2'
+services:
+  dns:
+    build: .
+    ports:
+      - "5353:5353"
+    volumes:
+      - "./config.json:/app/config.json"
+    depends_on:
+      - "redis"
+  redis:
+    image: "redis"
+    volumes:
+      - "./data:/data"
+    expose:
+      - "6379"
