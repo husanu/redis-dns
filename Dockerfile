@@ -10,12 +10,14 @@ RUN mkdir /app
 
 WORKDIR /app
 ADD package.json .
+ADD yarn.lock .
 ADD index.js .
 ADD config.json .
+ADD .babelrc .
 
 RUN yarn install
 
-EXPOSE 53
+EXPOSE 53/udp 53/tcp
 
 ENTRYPOINT ["/sbin/tini"]
 
