@@ -3,9 +3,14 @@ services:
   dns:
     build: .
     ports:
-      - "5353:5353"
+      - "53:53/udp"
+      - "53:53/tcp"
     volumes:
       - "./config.json:/app/config.json"
+    environment:
+      - "DNS_PORT=53"
+      - "DNS_INTERFACE=0.0.0.0"
+      - "REDIS_HOST=redis"
     depends_on:
       - "redis"
   redis:
@@ -14,3 +19,5 @@ services:
       - "./data:/data"
     expose:
       - "6379"
+    ports:
+      - "6379:6379"

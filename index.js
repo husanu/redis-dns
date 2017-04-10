@@ -59,7 +59,9 @@ const config = {
     redis: keysToLowerCase(nconf.get()).redis
 };
 
-const redisClient = redis.createClient(config.redis.port, config.redis.host).on('error', err => {
+const redisClient = redis.createClient(config.redis.port, config.redis.host).on('connect', () => {
+    console.info('Connected to Redis');
+}).on('error', err => {
     console.error('Redis error', err);
 });
 
